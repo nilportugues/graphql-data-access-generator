@@ -6,6 +6,10 @@
   "author": "Nil Portugués Calderó",  
   "license": "MIT",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nilportugues/graphql-data-access-generator.git"
+  },
   "scripts": {
     "dev": "ncc run index.js",
     "build": "rm -rf dist; ncc build index.js --out dist; rm dist/package.json"
