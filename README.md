@@ -2,6 +2,16 @@
 
 This project's goal is to generate all queries, mutation, subscriptions, fragments and types for any GraphQL schema.
 
+## Installation
+
+This is a development tool, so make sure you install it with `--save-dev` or `-D`.
+
+```
+npm install graphql-data-access-generator --save-dev
+
+yarn add -D graphql-data-access-generator
+```
+
 ## How it works? 
 
 1. Provide a `graphqlUrl` and optionally the required headers to authenticate. 
