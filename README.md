@@ -9,7 +9,7 @@ This project's goal is to generate all queries, mutation, subscriptions, fragmen
 3. Provide a `destinationPath` where all generated code will be outputed (it will be TypeScript). 
 
 ```js
-const generator = require('@nilportugues/graphql-data-access-generator')
+const generator = require('graphql-data-access-generator')
 
 async function () {
   await generator({
