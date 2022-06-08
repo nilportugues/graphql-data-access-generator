@@ -8,7 +8,7 @@ This project's goal is to generate all queries, mutation, subscriptions, fragmen
 2. Provide a `schemaFile` location to download the current GraphQL schema.
 3. Provide a `destinationPath` where all generated code will be outputed (it will be TypeScript). 
 
-```
+```js
 const generator = require('@nilportugues/graphql-data-access-generator')
 
 async function () {
