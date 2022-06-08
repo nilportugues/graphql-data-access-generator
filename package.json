@@ -1,5 +1,5 @@
 {
-  "name": "@nilportugues/graphql-data-access-generator",
+  "name": "graphql-data-access-generator",
   "version": "1.0.0",
   "description": "Generate all queries, mutation, subscriptions, fragments and types for any GraphQL schema",
   "main": "dist/index.js",
