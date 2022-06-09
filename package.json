@@ -1,6 +1,6 @@
 {
   "name": "graphql-data-access-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generate all queries, mutation, subscriptions, fragments and types for any GraphQL schema",
   "main": "dist/index.js",
   "author": "Nil Portugués Calderó",
@@ -8,13 +8,35 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git://github.com/nilportugues/graphql-data-access-generator.git"
+    "url": "git+https://github.com/nilportugues/graphql-data-access-generator.git"
   },
+  "homepage": "https://github.com/nilportugues/graphql-data-access-generator",
   "scripts": {
     "dev": "ncc run index.js",
     "build": "rm -rf dist; ncc build index.js --no-cache --minify --out dist",
     "postbuild": "rm dist/package.json"
   },
+  "keywords": [
+    "graphql",
+    "gql",
+    "query",
+    "generator",
+    "query gen",
+    "random query",
+    "query gen",
+    "query generator",
+    "graphql query generator",
+    "mutation",
+    "graphql endpoint",
+    "graphql schema",
+    "code generation",
+    "typescript",
+    "fragment",
+    "subcriptions",
+    "graphql types",
+    "graphql subcriptions",
+    "graphql fragments"
+  ],
   "dependencies": {
     "@graphql-codegen/core": "^2.5.1",
     "@graphql-codegen/typescript": "^2.5.0",

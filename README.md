@@ -12,7 +12,10 @@ npm install graphql-data-access-generator --save-dev
 yarn add -D graphql-data-access-generator
 ```
 
-## How it works? 
+## Demo
+All code generation can be demo'd by looking into the [example directory](https://github.com/nilportugues/graphql-data-access-generator/tree/main/example)
+
+## Usage
 
 1. Provide a `graphqlUrl` and optionally the required headers to authenticate. 
 2. Provide a `schemaFile` location to download the current GraphQL schema.
