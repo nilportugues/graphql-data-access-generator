@@ -1,9 +1,9 @@
 {
   "name": "graphql-data-access-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate all queries, mutation, subscriptions, fragments and types for any GraphQL schema",
   "main": "dist/index.js",
-  "author": "Nil Portugués Calderó",  
+  "author": "Nil Portugués Calderó",
   "license": "MIT",
   "private": false,
   "repository": {
@@ -15,10 +15,11 @@
     "build": "rm -rf dist; ncc build index.js --out dist; rm dist/package.json"
   },
   "dependencies": {
+    "@graphql-codegen/core": "^2.5.1",
+    "@graphql-codegen/typescript": "^2.5.0",
     "del": "^6.1.1",
     "fs-extra": "^10.1.0",
     "graphql": "^16.5.0",
-    "graphql-codegen": "^0.4.0",
     "graphql-import": "^1.0.2",
     "json-keys-sort": "^2.1.0",
     "node-fetch": "2",
