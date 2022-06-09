@@ -1,6 +1,6 @@
 {
   "name": "graphql-data-access-generator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Generate all queries, mutation, subscriptions, fragments and types for any GraphQL schema",
   "main": "dist/index.js",
   "author": "Nil Portugués Calderó",
@@ -38,6 +38,8 @@
     "graphql fragments"
   ],
   "dependencies": {
+  },
+  "devDependencies": {
     "@graphql-codegen/core": "^2.5.1",
     "@graphql-codegen/typescript": "^2.5.0",
     "del": "^6.1.1",
@@ -46,9 +48,7 @@
     "graphql-import": "^1.0.2",
     "json-keys-sort": "^2.1.0",
     "node-fetch": "2",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {
+    "path": "^0.12.7",
     "@vercel/ncc": "^0.34.0"
   }
 }
