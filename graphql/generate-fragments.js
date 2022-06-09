@@ -272,9 +272,8 @@ ${[...new Set(sortedExported[k])].join("\n")}
     }
 
     if (constructorName === "GraphQLObjectType") {
-      if (fragmentType === this.fragmentType.NO_RELATIONS) return null;
       let typeName = null;
-      // if(field.name !== undefined)
+      
       typeName =
         (field.name && field.name.value) ||
         (field.type.name.value && field.type.name.value) ||

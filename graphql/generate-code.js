@@ -293,7 +293,7 @@ const getFieldArgsDict = (field, duplicateArgCounts, allArgsDict = {}) =>
 
 async function generateGraphqlCode({
   schemaFilePath,
-  depthLimit = 2,
+  depthLimit = 100,
   destDirPath,
   includeDeprecatedFields = false,
   ext: fileExtension,
