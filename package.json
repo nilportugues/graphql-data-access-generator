@@ -1,6 +1,6 @@
 {
   "name": "graphql-data-access-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generate all queries, mutation, subscriptions, fragments and types for any GraphQL schema",
   "main": "dist/index.js",
   "author": "Nil Portugués Calderó",
@@ -12,7 +12,8 @@
   },
   "scripts": {
     "dev": "ncc run index.js",
-    "build": "rm -rf dist; ncc build index.js --out dist; rm dist/package.json"
+    "build": "rm -rf dist; ncc build index.js --no-cache --minify --out dist",
+    "postbuild": "rm dist/package.json"
   },
   "dependencies": {
     "@graphql-codegen/core": "^2.5.1",

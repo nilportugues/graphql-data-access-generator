@@ -37,7 +37,7 @@ main()
 
 ## Distribution file
 
-The current bundle size for this repository is `5MB`. All of it belongs to `dist/index.js`. 
+The current bundle size for this repository is `3.9MB`. All of it belongs to `dist/index.js`. 
 
 The reason behind this file size is we're using `@vercel/ncc` to generate one file with all the dependencies embedded to the generated `dist/index.js` file. This makes this package have no real dependencies when being installed in your project.
 

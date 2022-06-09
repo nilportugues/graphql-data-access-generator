@@ -1,4 +1,4 @@
-const generator = require('../index')
+const generator = require('../dist/index')
 
 async function main() {
   await generator({
