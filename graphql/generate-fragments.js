@@ -104,6 +104,8 @@ class GenerateFragments {
         };
       })
       .filter((frag) => frag != null);
+
+
     const deepFragments = typeNames
       .map((typeName) => {
         const type = ast.getType(typeName);
@@ -161,7 +163,7 @@ class GenerateFragments {
       const sortedLines = json.sort(lines, true);
       const sortedExported = json.sort(exported, true);
 
-      //Now build the export version... for each entry, we need to track all the inner fragments.
+      //Finally build the export version... for each entry, we need to track all the inner fragments.
       const exportKeys = Object.keys(sortedExported);
       for (let i = 0; i < exportKeys.length; i++) {
         const rawKey = exportKeys[i];
@@ -169,6 +171,7 @@ class GenerateFragments {
 
         const results = this.__getFragmentNames(key, lines[key], lines);
         sortedExported[rawKey].push(...results);
+        sortedExported[rawKey] = [...new Set(sortedExported[rawKey])];
       }
 
       return `
@@ -177,7 +180,7 @@ ${Object.values(sortedLines).join("\n\n")}
 ${Object.keys(sortedExported)
   .map((k) => {
     return `export const ${k} = \`
-${[...new Set(sortedExported[k])].join("\n")}
+${sortedExported[k].join("\n")}
 \``;
   })
   .join("\n\n")}
@@ -217,20 +220,37 @@ ${[...new Set(sortedExported[k])].join("\n")}
   }
 
   generateFragments(type, ast, fragmentType = this.fragmentType.DEFAULT) {
+    const name = type.name;
     const fields = type.getFields();
     const fragmentFields = Object.keys(fields)
       .filter((field) => !field.endsWith("_func"))
       .map((field) => {
-        return this.printField(field, fields[field], ast, fragmentType);
+        return this.printField(
+          name,
+          type,
+          field,
+          fields[field],
+          ast,
+          fragmentType
+        );
       })
       // Some fields should not be printed, ie. fields with relations.
       // Remove those from the output by returning null from printField.
       .filter((field) => field != null);
     return fragmentFields;
   }
-  printField(fieldName, field, ast, fragmentType, indent = 1) {
+  printField(name, type, fieldName, field, ast, fragmentType, indent = 1) {
     let constructorName =
       field.type.constructor.name && field.type.constructor.name;
+
+    if (
+      fragmentType === this.fragmentType.NO_RELATIONS &&
+      (constructorName === "GraphQLList" ||
+        constructorName === "GraphQLObjectType")
+    ) {
+      return null;
+    }
+
     if (constructorName === "Object")
       constructorName =
         (field.type.name &&
@@ -273,11 +293,23 @@ ${[...new Set(sortedExported[k])].join("\n")}
 
     if (constructorName === "GraphQLObjectType") {
       let typeName = null;
-      
+
       typeName =
         (field.name && field.name.value) ||
         (field.type.name.value && field.type.name.value) ||
         field.type.name;
+
+      if (fragmentType === this.fragmentType.NO_RELATIONS) {
+        return (
+          fieldName +
+          " {" +
+          `${Object.values(type.getFields())
+            .map((v) => this.indentedLine(indent + 1) + v.name)
+            .join("")}` +
+          this.indentedLine(indent) +
+          "}"
+        );
+      }
 
       return (
         fieldName +
@@ -285,11 +317,13 @@ ${[...new Set(sortedExported[k])].join("\n")}
         this.indentedLine(indent + 1) +
         "..." +
         `${
-          (fragmentType === this.fragmentType.DEEP &&
-            typeName + this.fragmentType.DEEP) ||
-          (fragmentType === this.fragmentType.DEFAULT &&
-            typeName + this.fragmentType.NO_RELATIONS) ||
-          typeName + this.fragmentType.DEFAULT
+          name === typeName
+            ? typeName + this.fragmentType.NO_RELATIONS
+            : (fragmentType === this.fragmentType.DEEP &&
+                typeName + this.fragmentType.DEEP) ||
+              (fragmentType === this.fragmentType.DEFAULT &&
+                typeName + this.fragmentType.NO_RELATIONS) ||
+              typeName + this.fragmentType.DEFAULT
         }` +
         this.indentedLine(indent) +
         "}"

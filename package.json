@@ -1,6 +1,6 @@
 {
   "name": "graphql-data-access-generator",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Generate all queries, mutation, subscriptions, fragments and types for any GraphQL schema",
   "main": "dist/index.js",
   "author": "Nil Portugués Calderó",

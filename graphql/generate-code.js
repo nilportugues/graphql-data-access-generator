@@ -109,15 +109,12 @@ const generateQuery = (
     }
 
     if (childQuery) {
-      
-
       if (curType.astNode && curType.astNode.kind === "ObjectTypeDefinition") {
         queryStr += `{\n...${curType.name}\n${"    ".repeat(curDepth)} }`;
         fragments += `\${${curType.name}}`;
       } else {
         queryStr += `{\n${childQuery}\n${"    ".repeat(curDepth)} }`;
       }
-
     }
   }
 
